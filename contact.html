@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - MS-Web Developer</title>
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+   *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body{
+        background:#ffffff;
+        color:#222;
+    }
+
+    /* Navbar */
+    nav{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:20px 8%;
+        box-shadow:0 4px 10px rgba(0,0,0,0.05);
+    }
+    #nav-links.active{
+        display: flex;
+    }
+
+    .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+}
+
+.logo-box{
+    background:#FF6A00;
+    color:white;
+    padding:8px 14px;
+    border-radius:12px;
+    font-weight:700;
+    box-shadow:0 8px 20px rgba(255,106,0,0.3);
+}
+
+.logo-text{
+    color:#222;
+    font-size:18px;
+}
+
+    .menu-toggle{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+
+    nav ul{
+        list-style:none;
+        display:flex;
+        gap:30px;
+    }
+
+    nav ul li a{
+        text-decoration:none;
+        color:#333;
+        font-weight:500;
+    }
+
+    nav ul li a:hover{
+        color:#FF6A00;
+    }
+
+    /* Contact Header */
+    .contact-header {
+        text-align:center;
+        padding:80px 6% 40px;
+    }
+    .contact-header h2 {
+        color:#FF6A00;
+        font-size:32px;
+        margin-bottom:10px;
+    }
+    .contact-header p {
+        color:#555;
+        font-size:16px;
+    }
+
+    /* Contact Info Section */
+    .contact-section {
+        display:flex;
+        justify-content:center;
+        align-items:flex-start;
+        gap:50px;
+        padding:50px 6%;
+        flex-wrap:wrap;
+    }
+    .contact-card {
+        flex:1 1 350px;
+        background:#FDF1E7;
+        padding:30px 25px;
+        border-radius:20px;
+        box-shadow:0 15px 35px rgba(0,0,0,0.08);
+        display:flex;
+        flex-direction:column;
+        gap:15px;
+    }
+    .contact-card h3 {
+        color:#FF6A00;
+        font-size:15px;
+        margin-bottom:10px;
+    }
+    .contact-card p {
+        color:#555;
+        font-size:14px;
+    }
+    .contact-card a {
+        color:#FF6A00;
+        text-decoration:none;
+        transition:0.3s;
+    }
+    .contact-card a:hover {
+        text-decoration:underline;
+    }
+
+    /* Social Icons */
+    .social-icons {
+        display:flex;
+        gap:15px;
+        margin-top:10px;
+    }
+    .social-icons a {
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:40px;
+        height:40px;
+        background:#FF6A00;
+        color:white;
+        border-radius:50%;
+        font-size:18px;
+        text-decoration:none;
+        transition:0.3s;
+    }
+    .social-icons a:hover {
+        background:#e85d00;
+    }
+
+    @media (max-width: 992px){
+
+/* Mobile Nav */
+
+nav{
+    flex-wrap: wrap;
+    padding: 20px 6%;
+}
+
+.menu-toggle{
+    display: block;
+}
+
+nav ul{
+    flex-direction: column;
+    background:#FDF1E7;
+    flex-direction:column;
+    width:100%;
+    padding:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.08);
+    display:none;
+    border-radius:20px;
+}
+
+nav ul li{
+    margin-bottom:15px;
+}
+
+.menu-toggle{
+    display:block;
+}
+    }
+
+    /* Footer */
+    .footer-section {
+        background:#FDF1E7;
+        padding:60px 6% 20px;
+        color:#222;
+    }
+    .footer-container {
+        display:flex;
+        justify-content:space-between;
+        flex-wrap:wrap;
+        gap:30px;
+    }
+    .footer-brand,
+    .footer-links,
+    .footer-contact {
+        flex:1 1 250px;
+    }
+    .footer-links ul li a:hover{
+    color:#FF6A00;
+}
+.footer-links ul li a{
+    text-decoration:none;
+    color:#222;
+    transition:0.3s;
+}
+.footer-links ul{
+    list-style:none;
+    padding:0;
+}
+    .footer-contact a {
+        color:#222;
+        text-decoration:none;
+        transition:0.3s;
+    }
+    .footer-contact a:hover {
+        color:#FF6A00;
+    }
+    .footer-bottom {
+        text-align:center;
+        margin-top:30px;
+        font-size:14px;
+        color:#555;
+        border-top:1px solid rgba(0,0,0,0.1);
+        padding-top:15px;
+    }
+
+    /* Responsive */
+    @media(max-width:992px){
+        .contact-section {
+            flex-direction:column;
+            align-items:center;
+        }
+    }
+</style>
+</head>
+<script>
+    function toggleMenu(){
+        var menu = document.getElementById("nav-links");
+            menu.style.display = "flex";
+    }
+</script>
+<body>
+    <!-- Navbar -->
+<!-- Navbar -->
+<nav>
+    <h2 class="logo">
+        <span class="logo-box">MS</span>
+        <span class="logo-text">Web Developer</span>
+    </h2>
+    <div class="menu-toggle" onclick="toggleMenu()">
+        ☰
+    </div>
+    <ul id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="#"class="active">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- Contact Header -->
+<div class="contact-header">
+    <h2>Contact Me</h2>
+    <p>Reach out directly via email, WhatsApp, phone, or follow me on social media.</p>
+</div>
+
+<!-- Contact Info Section -->
+<div class="contact-section">
+    <!-- Email / Phone Card -->
+    <div class="contact-card">
+        <h3>Email</h3>
+        <p><a href="mailto:masoyinshehu75@gmail.com">masoyinshehu75@gmail.com</a></p>
+
+        <h3>Phone / WhatsApp</h3>
+        <p><a href="https://wa.me/2349133245515" target="_blank">+234 913 324 5515</a></p>
+
+        <h3>Location</h3>
+        <p>Nigeria</p>
+
+        <h3>Follow Me</h3>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/share/17BjxqejRU/" target="_blank">F</a>
+            <a href="https://x.com/YakubuSule8878" target="_blank">T</a>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer-section">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h2 class="logo">
+                <span class="logo-box">MS</span>
+                <span class="logo-text">Web Developer</span>
+            </h2>
+            <p>Building modern, secure, and responsive websites and systems for schools and businesses.</p>
+        </div>
+        <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="#" class="active">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-contact">
+            <h3>Contact</h3>
+            <p>Email: <a href="mailto:masoyinshehu75@gmail.com">masoyinshehu75@gmail.com</a></p>
+            <p>WhatsApp: <a href="https://wa.me/2349133245515" target="_blank">+234 913 324 5515</a></p>
+            <p>Location:Opposite Kofar Hausa Ahuwa Bread,<br>Keffi, Nasarawa State Nigeria</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 MS-Web Developer. All Rights Reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS-Web Developer</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body{
+        background:#ffffff;
+        color:#222;
+    }
+
+    /* Navbar */
+    nav{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:20px 8%;
+        box-shadow:0 4px 10px rgba(0,0,0,0.05);
+    }
+    #nav-links.active{
+        display: flex;
+    }
+
+    .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+}
+
+.logo-box{
+    background:#FF6A00;
+    color:white;
+    padding:8px 14px;
+    border-radius:12px;
+    font-weight:700;
+    box-shadow:0 8px 20px rgba(255,106,0,0.3);
+}
+
+.logo-text{
+    color:#222;
+    font-size:18px;
+}
+
+    .menu-toggle{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+
+    nav ul{
+        list-style:none;
+        display:flex;
+        gap:30px;
+    }
+
+    nav ul li a{
+        text-decoration:none;
+        color:#333;
+        font-weight:500;
+    }
+
+    nav ul li a:hover{
+        color:#FF6A00;
+    }
+
+    /* Hero Section */
+    .hero-section{
+    padding:60px 6%;
+}
+
+.hero-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:50px;
+}
+
+/* Left Big Cream Card */
+.hero-card{
+    background: linear-gradient(
+        135deg,
+        #FDF1E7 0%,
+        #F7E8DC 50%,
+        #F3E7DD 100%
+    );
+    padding:50px;
+    border-radius:30px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.08);
+    max-width:400px;
+}
+
+.profile-wrapper{
+    position: relative;
+    width: 170px;
+    height: 170px;
+    margin-bottom: 20px;
+}
+.profile-bg{
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    background: #ffffff;
+    border-radius: 50%;
+    border: 3px solid #FF6A00;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    top: 0;
+    left: 0;
+}
+
+.profile-img{
+    position: absolute;
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    object-fit: cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.role{
+    color:#FF6A00;
+    margin-bottom:15px;
+}
+
+.desc{
+    color:#555;
+    margin-bottom:25px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+}
+
+/* Buttons */
+.btn{
+    background:#FF6A00;
+    color:white;
+    padding:12px 25px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:500;
+    box-shadow:0 10px 25px rgba(255,106,0,0.3);
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#e85d00;
+}
+
+/* Floating Stat Boxes */
+.stats-container{
+    display:flex;
+    gap:25px;
+}
+
+.stat-box{
+    background:white;
+    padding:25px 35px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.06);
+}
+
+.stat-box h3{
+    color:#FF6A00;
+    font-size:20px;
+}
+
+.projects-section{
+    padding:60px 6%;
+    background:#fdf1e7; /* match hero card gradient tone */
+}
+
+.section-title{
+    text-align:center;
+    font-size:28px;
+    color:#FF6A00;
+    margin-bottom:40px;
+    font-weight:700;
+}
+
+.projects-container{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:30px;
+}
+
+.project-card{
+    background:white;
+    border-radius:25px;
+    padding:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.06);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    transition:0.3s;
+}
+
+.project-card:hover{
+    transform: translateY(-5px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.1);
+}
+
+.project-card img{
+    width:100%;
+    border-radius:20px;
+    margin-bottom:20px;
+    object-fit:cover;
+}
+
+.project-card h3{
+    color:#FF6A00;
+    margin-bottom:10px;
+}
+
+.project-card p{
+    color:#555;
+    font-size:14px;
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.project-card .btn{
+    padding:10px 20px;
+    font-size:14px;
+}
+
+.footer-section{
+    background:#FDF1E7;  /* match hero card tone */
+    padding:60px 6% 20px;
+    color:#222;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 40px;
+}
+
+.footer-container{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+.footer-brand,
+.footer-links,
+.footer-contact{
+    flex:1 1 250px;
+}
+.footer-contact a{
+    color:#222;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.footer-contact a:hover{
+    color:#FF6A00;
+}
+
+.footer-brand .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+.footer-brand .logo-box{
+    background:#FF6A00;
+    color:white;
+    padding:6px 12px;
+    border-radius:12px;
+    font-weight:700;
+    box-shadow:0 8px 20px rgba(255,106,0,0.3);
+}
+
+.footer-links h3,
+.footer-contact h3{
+    color:#FF6A00;
+    margin-bottom:15px;
+    font-size:18px;
+}
+
+.footer-links ul{
+    list-style:none;
+    padding:0;
+}
+
+.footer-links ul li{
+    margin-bottom:10px;
+}
+
+.footer-links ul li a{
+    text-decoration:none;
+    color:#222;
+    transition:0.3s;
+}
+nav ul li a.active{
+    color:#FF6A00; /* matches your brand color */
+    font-weight:600;
+    border-bottom: 2px solid #FF6A00; /* optional underline for emphasis */
+    padding-bottom:2px;
+}
+
+.footer-links ul li a:hover{
+    color:#FF6A00;
+}
+
+.footer-bottom{
+    text-align:center;
+    margin-top:30px;
+    font-size:14px;
+    color:#555;
+    border-top:1px solid rgba(0,0,0,0.1);
+    padding-top:15px;
+}
+
+@media (max-width:768px){
+
+.profile-wrapper{
+    width: 130px;   /* smaller for mobile */
+    height: 130px;
+    margin:auto;    /* center on small screens */
+}
+
+.profile-bg{
+    width: 130px;
+    height: 130px;
+    border-width: 5px;  /* thinner border for mobile */
+}
+
+.profile-img{
+    width: 100px;
+    height: 100px;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+}
+
+@media (max-width:768px){
+    .projects-section{
+        padding:40px 5%;
+    }
+
+    .section-title{
+        font-size:24px;
+    }
+
+    .project-card h3{
+        font-size:18px;
+    }
+
+    .project-card p{
+        font-size:13px;
+    }
+
+    .project-card .btn{
+        font-size:13px;
+        padding:8px 16px;
+    }
+}
+
+@media (max-width:768px){
+    .footer-container{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        gap:25px;
+    }
+
+    .footer-links ul li a,
+    .footer-contact p{
+        font-size:14px;
+    }
+}
+
+/* ============================= */
+/* RESPONSIVE DESIGN */
+/* ============================= */
+
+@media (max-width: 992px){
+
+/* Mobile Nav */
+
+nav{
+    flex-wrap: wrap;
+    padding: 20px 6%;
+}
+
+.menu-toggle{
+    display: block;
+}
+
+nav ul{
+    flex-direction: column;
+    background:#FDF1E7;
+    flex-direction:column;
+    width:100%;
+    padding:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.08);
+    display:none;
+    border-radius:20px;
+}
+
+nav ul li{
+    margin-bottom:15px;
+}
+
+.menu-toggle{
+    display:block;
+}
+
+.hero-container{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+}
+
+.hero-card{
+    max-width:100%;
+    width: 100%;
+}
+
+.hero-card h2{
+    font-size: 24px;
+}
+
+.hero-card.role{
+    font-size: 16px;
+}
+.hero-card .desc{
+    font-size: 14px;
+    line-height: 1.6;
+}
+.hero-buttons .btn{
+    padding: 10px 18px;
+    font-size: 14px;
+}
+.profile-wrapper{
+    margin:auto;
+}
+
+.hero-buttons{
+    justify-content:center;
+    flex-wrap:wrap;
+    gap: 10px;
+}
+
+.stats-container{
+    flex-direction:column;
+    width:100%;
+    margin-top:30px;
+    gap: 15px;
+}
+
+.stat-box{
+    width:100%;
+}
+.stat-box{
+    padding: 20px;
+}
+.stat-box h3{
+    font-size: 18px;
+}
+.stat-box ul li{
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.stat-box ul{
+    list-style-position: inside;
+    text-align: left;
+    padding: 0;
+}
+}
+
+</style>
+<script>
+    function toggleMenu(){
+        var menu = document.getElementById("nav-links");
+            menu.style.display = "flex";
+    }
+</script>
+<body>
+    
+
+        <!-- Navbar -->
+        <nav>
+            <h2 class="logo">
+                <span class="logo-box">MS</span>
+                <span class="logo-text">Web Developer</span>
+            </h2>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                ☰
+            </div>
+            <ul id="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    
+        <!-- Hero Section -->
+        <section class="hero-section">
+
+            <div class="hero-container">
+        
+                <!-- Left Profile Card -->
+                <div class="hero-card">
+                    <div class="profile-wrapper">
+                        <div class="profile-bg"></div>
+                    <img src="Circle2.jpg" class="profile-img">
+                    </div>
+        
+                    <h2>Yakubu Umar</h2>
+                    <p class="role">Web Developer</p>
+        
+                    <p class="desc">
+                        I design and develop modern, high-performance websites,
+                        management systems, and payment solution that help
+                        schools and businesses grow, operate efficiently, and 
+                        increase revenue.
+                        <br>
+                        From idea to deployment, i build secure, scalabe,
+                        and user-friendly digital solutions tailored to your needs.
+                    </p>
+        
+                    <div class="hero-buttons">
+                        <a href="portfolio.html" class="btn">View Portfolio</a>
+                        <a href="https://wa.me/2349133245515" class="btn">Hire Me</a>
+                    </div>
+                </div>
+        
+                <!-- Right Stats -->
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <h3>Academic Solutions</h3>
+                        <ul>
+                            <li>Academic Management Sysytem</li>
+                            <li>Online Admissioin Portal</li>
+                            <li>Result & Grading Sysytem</li>
+                            <li>Attendance Tracking</li>
+                        </ul>
+                    </div>
+        
+                    <div class="stat-box">
+                        <h3>Business Solution</h3>
+                        <ul>
+                            <li>Company Website</li>
+                            <li>Real Estate Website</li>
+                            <li>Inventory Management Sysytem</li>
+                            <li>Business Dashboard</li>
+                        </ul>
+                    </div>
+        
+                    <div class="stat-box">
+                        <h3>Payment & Automation</h3>
+                        <ul>
+                            <li>Paystack Integration</li>
+                            <li>Online Payment Portal</li>
+                            <li>Transaction Management Sysytem</li>
+                            <li>Admin Control</li>
+                        </ul>
+                    </div>
+                </div>
+        
+            </div>
+        
+        </section>
+        <section class="projects-section">
+            <h2 class="section-title">Recent Projects</h2>
+        
+            <div class="projects-container">
+        
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <img src="Stu.png" alt="Project 1">
+                    <h3>Academic Management System</h3>
+                    <p>Web-based system to manage students, results, and attendance.</p>
+                    <a href="#" class="btn">View Demo</a>
+                </div>
+        
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <img src="Com.png" alt="Project 2">
+                    <h3>Company Website</h3>
+                    <p>Modern website for business showcase with responsive design.</p>
+                    <a href="#" class="btn">View Demo</a>
+                </div>
+        
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <img src="Ne.png" alt="Project 3">
+                    <h3>Payment & Transaction Portal</h3>
+                    <p>Secure portal with online payment and transaction management.</p>
+                    <a href="#" class="btn">View Demo</a>
+                </div>
+        
+            </div>
+        </section>
+    
+        <footer class="footer-section">
+            <div class="footer-container">
+        
+                <!-- About / Brand -->
+                <div class="footer-brand">
+                    <h2 class="logo">
+                        <span class="logo-box">MS</span>
+                        <span class="logo-text">Web Developer</span>
+                    </h2>
+                    <p>Building modern, secure, and responsive websites and systems for schools and businesses.</p>
+                </div>
+        
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+        
+                <!-- Contact Info -->
+                <!-- Contact Info -->
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <p>Email: <a href="mailto:masoyinshehu75@gmail.com">masoyinshehu75@gmail.com</a></p>
+                <p>WhatsApp: <a href="https://wa.me/2349133245515" target="_blank">+234 913 324 5515</a></p>
+                <p>Location:Opposite Kofar Hausa Ahuwa Bread,<br>Keffi, Nasarawa State Nigeria</p>
+            </div>
+        
+            </div>
+        
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 MS-Web Developer. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+</body>
+</html>

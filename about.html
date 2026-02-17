@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS-Web Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body{
+        background:#ffffff;
+        color:#2d2d2d;
+    }
+
+    /* Navbar */
+    nav{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:20px 8%;
+        box-shadow:0 4px 10px rgba(4, 4, 4, 0.05);
+        margin-bottom: 40px;
+    }
+    #nav-links.active{
+        display: flex;
+    }
+
+    .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+}
+
+.logo-box{
+    background:#FF6A00;
+    color:white;
+    padding:8px 14px;
+    border-radius:12px;
+    font-weight:700;
+    box-shadow:0 8px 20px rgba(255,106,0,0.3);
+}
+
+.logo-text{
+    color:#222;
+    font-size:18px;
+}
+
+    .menu-toggle{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+
+    nav ul{
+        list-style:none;
+        display:flex;
+        gap:30px;
+    }
+
+    nav ul li a{
+        text-decoration:none;
+        color:#333;
+        font-weight:500;
+    }
+
+    nav ul li a:hover{
+        color:#FF6A00;
+    }
+    @media (max-width: 992px){
+
+/* Mobile Nav */
+
+nav{
+    flex-wrap: wrap;
+    padding: 20px 6%;
+}
+
+.menu-toggle{
+    display: block;
+}
+
+nav ul{
+    flex-direction: column;
+    background:#FDF1E7;
+    flex-direction:column;
+    width:100%;
+    padding:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.08);
+    display:none;
+    border-radius:20px;
+}
+
+nav ul li{
+    margin-bottom:15px;
+}
+
+.menu-toggle{
+    display:block;
+}
+    }
+
+    .about-section{
+    padding:60px 6%;
+    background:#ffffff;
+    color:#222;
+}
+
+.about-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:50px;
+    flex-wrap:wrap;
+}
+
+/* Left: Profile Picture */
+.about-left{
+    flex:1;
+    display:flex;
+    justify-content:center;
+}
+
+.about-left .about-img{
+    width:400px;
+    height:auto;
+    border-radius:15px; /* rectangle with soft corners */
+    object-fit:cover;
+    box-shadow:0 15px 35px rgba(0,0,0,0.08);
+}
+
+/* Right: Information */
+.about-right{
+    flex:2;
+}
+
+.about-right h2{
+    color:#9d5118;
+    font-size:32px;
+    margin-bottom:25px;
+}
+
+.about-item{
+    margin-bottom:20px;
+}
+
+.about-item h3{
+    color:#37302a;
+    font-size:18px;
+    margin-bottom:5px;
+}
+
+.about-item p{
+    font-size:16px;
+    color:#555;
+    line-height:1.6;
+}
+
+.about-item a{
+    color:#222;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.about-item a:hover{
+    color:#FF6A00;
+}
+
+/* Social Icons */
+.social-icons a{
+    font-size:35px;
+    color:#222;
+    transition:0.3s;
+}
+
+.social-icons a:hover{
+    color:#FF6A00;
+}
+
+.social-icons a:hover img{
+    transform: scale(1.1);
+}
+@media (max-width:768px){
+    .about-container{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        gap:30px;
+    }
+
+    .about-left .about-img{
+        width:90%;
+        max-width:250px;
+        border-radius:15px;
+    }
+
+    .about-right h2{
+        font-size:24px;
+    }
+
+    .about-item h3{
+        font-size:16px;
+    }
+
+    .about-item p{
+        font-size:14px;
+    }
+
+    .social-icons{
+        justify-content:center;
+        gap:15px;
+    }
+}
+.team-section{
+    padding:60px 6%;
+    background:#FDF1E7; /* subtle cream for distinction */
+    text-align:center;
+}
+
+.team-section h2{
+    color:#FF6A00;
+    font-size:32px;
+    margin-bottom:40px;
+}
+
+.team-container{
+    display:flex;
+    justify-content:space-between;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.team-card{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.08);
+    flex:1 1 250px; /* flexible width for responsive */
+    text-align:center;
+}
+
+.team-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:15px;
+    margin-bottom:15px;
+}
+
+.team-card h3{
+    color:#FF6A00;
+    margin-bottom:5px;
+    font-size:20px;
+}
+
+.team-card p{
+    color:#555;
+    font-size:16px;
+    margin-bottom:15px;
+}
+
+.team-card .btn{
+    background:#FF6A00;
+    color:white;
+    padding:10px 20px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:500;
+    box-shadow:0 10px 25px rgba(255,106,0,0.3);
+    transition:0.3s;
+}
+
+.team-card .btn:hover{
+    background:#e85d00;
+}
+@media (max-width:768px){
+    .team-container{
+        flex-direction:column;
+        align-items:center;
+        gap:20px;
+    }
+
+    .team-card img{
+        height:200px;
+    }
+}
+.about-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+    .footer-section{
+    background:#FDF1E7;  /* match hero card tone */
+    padding:60px 6% 20px;
+    color:#222;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 40px;
+}
+
+.footer-container{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+.footer-brand,
+.footer-links,
+.footer-contact{
+    flex:1 1 250px;
+}
+.footer-contact a{
+    color:#222;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.footer-contact a:hover{
+    color:#FF6A00;
+}
+
+.footer-brand .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+.footer-brand .logo-box{
+    background:#FF6A00;
+    color:white;
+    padding:6px 12px;
+    border-radius:12px;
+    font-weight:700;
+    box-shadow:0 8px 20px rgba(255,106,0,0.3);
+}
+
+.footer-links h3,
+.footer-contact h3{
+    color:#FF6A00;
+    margin-bottom:15px;
+    font-size:18px;
+}
+
+.footer-links ul{
+    list-style:none;
+    padding:0;
+}
+
+.footer-links ul li{
+    margin-bottom:10px;
+}
+
+.footer-links ul li a{
+    text-decoration:none;
+    color:#222;
+    transition:0.3s;
+}
+nav ul li a.active{
+    color:#FF6A00; /* matches your brand color */
+    font-weight:600;
+    border-bottom: 2px solid #FF6A00; /* optional underline for emphasis */
+    padding-bottom:2px;
+}
+
+.footer-links ul li a:hover{
+    color:#FF6A00;
+}
+
+.footer-bottom{
+    text-align:center;
+    margin-top:30px;
+    font-size:14px;
+    color:#555;
+    border-top:1px solid rgba(0,0,0,0.1);
+    padding-top:15px;
+}
+@media (max-width:768px){
+    .footer-container{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        gap:25px;
+    }
+
+    .footer-links ul li a,
+    .footer-contact p{
+        font-size:14px;
+    }
+}
+</style>
+
+<script>
+    function toggleMenu(){
+        var menu = document.getElementById("nav-links");
+            menu.style.display = "flex";
+    }
+</script>
+<body>
+    
+
+    <!-- Navbar -->
+    <nav>
+        <h2 class="logo">
+            <span class="logo-box">MS</span>
+            <span class="logo-text">Web Developer</span>
+        </h2>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            ☰
+        </div>
+        <ul id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#" class="active">About</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="about-section">
+        <div class="about-container">
+    
+            <!-- Left: Profile Picture -->
+            <div class="about-left">
+                <img src="YaksB.png" alt="Yakubu Umar" class="about-img">
+            </div>
+    
+            <!-- Right: Information -->
+            <div class="about-right">
+                <h2>About Me</h2>
+    
+                <!-- Personal Info -->
+    
+                <div class="about-item">
+                    <h3>Name</h3>
+                    <p>Yakubu Umar</p>
+                </div>
+                <div class="about-item">
+                    <h3>School / Education</h3>
+                    <p>University of Maiduguri (UNIMAID)<br>
+                        Course: Computer Science Department</p>
+                </div>
+                <div class="about-item">
+                    <h3>Worked At</h3>
+                    <p>Elias Cyberlink Enterprises as Manager till date</p>
+                    <p>Email: eliascafe450@gmail.com</p>
+                </div>
+                <div class="about-item">
+                    <h3>Skills</h3>
+                    <p>Web Development, Data Analysis with Microsoft Excel,<br>
+                        Graphics Design, Microsoft Power Point, Microsoft Word
+                        <br>Responsive Design</p>
+                </div>
+                <div class="about-item">
+                    <h3>Experience</h3>
+                    <p>Developed Academic Management Systems, Company Websites, Online Payment Portals</p>
+                </div>
+    
+                <!-- Contact Info -->
+                <div class="about-item">
+                    <h3>Contact</h3>
+                    <p>Email: <a href="mailto:masoyinshehu75@gmail.com">masoyinshehu75@gmail.com</a></p>
+                    <p>Phone: <a href="tel:+2349133245515">+234 913 324 5515</a></p>
+                </div>
+    
+                <!-- Social Media -->
+                <div class="social-icons">
+                    <a href="https://wa.me/2349133245515" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://x.com/YakubuSule8878" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.facebook.com/share/17BjxqejRU/" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <h2>Brothers</h2>
+        <div class="team-container">
+    
+            <!-- Brother 1 -->
+            <div class="team-card">
+                <img src="Bello.jpg" alt="Brother 1">
+                <h3>Bello Umar Bello</h3>
+                <p>Fashion Designer</p>
+                <a href="https://wa.me/2348128858225" target="_blank" class="btn">Message</a>
+            </div>
+    
+            <!-- Brother 2 -->
+            <div class="team-card">
+                <img src="Nura.jpg" alt="Brother 2">
+                <h3>Muhammad Umar Bello</h3>
+                <p>Best Tailoring</p>
+                <a href="https://wa.me/2348164336762" target="_blank" class="btn">Message</a>
+            </div>
+    
+            <!-- Brother 3 -->
+            <div class="team-card">
+                <img src="Abdullahi.jpg" alt="Brother 3">
+                <h3>Abdullahi Umar</h3>
+                <p>Teachnician</p>
+                <a href="https://wa.me/2348075058412" target="_blank" class="btn">Message</a>
+            </div>
+    
+        </div>
+    </section>
+
+    <footer class="footer-section">
+        <div class="footer-container">
+    
+            <!-- About / Brand -->
+            <div class="footer-brand">
+                <h2 class="logo">
+                    <span class="logo-box">MS</span>
+                    <span class="logo-text">Web Developer</span>
+                </h2>
+                <p>Building modern, secure, and responsive websites and systems for schools and businesses.</p>
+            </div>
+    
+            <!-- Quick Links -->
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+    
+            <!-- Contact Info -->
+            <!-- Contact Info -->
+        <div class="footer-contact">
+            <h3>Contact</h3>
+            <p>Email: <a href="mailto:masoyinshehu75@gmail.com">masoyinshehu75@gmail.com</a></p>
+            <p>WhatsApp: <a href="https://wa.me/2349133245515" target="_blank">+234 913 324 5515</a></p>
+            <p>Location:Opposite Kofar Hausa Ahuwa Bread,<br>Keffi, Nasarawa State Nigeria</p>
+        </div>
+    
+        </div>
+    
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 MS-Web Developer. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS-Web Developer</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body{
+        background:#ffffff;
+        color:#222;
+        overflow-x: hidden;
+    }
+
+    /* Navbar */
+    nav{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:20px 8%;
+        box-shadow:0 4px 10px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
+    }
+    #nav-links.active{
+        display: flex;
+    }
+
+    .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+}
+
+.logo-box{
+    background:#FF6A00;
+    color:white;
+    padding:8px 14px;
+    border-radius:12px;
+    font-weight:700;
+    box-shadow:0 8px 20px rgba(255,106,0,0.3);
+}
+
+.logo-text{
+    color:#222;
+    font-size:18px;
+}
+
+    .menu-toggle{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+
+    nav ul{
+        list-style:none;
+        display:flex;
+        gap:30px;
+    }
+
+    nav ul li a{
+        text-decoration:none;
+        color:#333;
+        font-weight:500;
+    }
+
+    nav ul li a:hover{
+        color:#FF6A00;
+    }
+
+.footer-section{
+    background:#FDF1E7;  /* match hero card tone */
+    padding:70px 6%;
+    color:#222;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 40px;
+}
+
+.footer-container{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+
+
+.footer-brand,
+.footer-links,
+.footer-contact{
+    flex:1 1 250px;
+}
+.footer-contact a{
+    color:#222;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.footer-contact a:hover{
+    color:#FF6A00;
+}
+
+.footer-brand .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+.footer-brand .logo-box{
+    background:#FF6A00;
+    color:white;
+    padding:6px 12px;
+    border-radius:12px;
+    font-weight:700;
+    box-shadow:0 8px 20px rgba(255,106,0,0.3);
+}
+
+.footer-links h3,
+.footer-contact h3{
+    color:#FF6A00;
+    margin-bottom:15px;
+    font-size:18px;
+}
+
+.footer-links ul{
+    list-style:none;
+    padding:0;
+}
+
+.footer-links ul li{
+    margin-bottom:10px;
+}
+
+.footer-links ul li a{
+    text-decoration:none;
+    color:#222;
+    transition:0.3s;
+}
+nav ul li a.active{
+    color:#FF6A00; /* matches your brand color */
+    font-weight:600;
+    border-bottom: 2px solid #FF6A00; /* optional underline for emphasis */
+    padding-bottom:2px;
+}
+
+.footer-links ul li a:hover{
+    color:#FF6A00;
+}
+
+.footer-bottom{
+    text-align:center;
+    margin-top:30px;
+    font-size:14px;
+    color:#555;
+    border-top:1px solid rgba(0,0,0,0.1);
+    padding-top:15px;
+}
+
+@media (max-width:768px){
+    .footer-container{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        gap:25px;
+    }
+
+    .footer-links ul li a,
+    .footer-contact p{
+        font-size:14px;
+    }
+}
+
+/* ============================= */
+/* RESPONSIVE DESIGN */
+/* ============================= */
+
+@media (max-width: 992px){
+
+/* Mobile Nav */
+
+nav{
+    flex-wrap: wrap;
+    padding: 20px 6%;
+}
+
+.menu-toggle{
+    display: block;
+}
+
+nav ul{
+    flex-direction: column;
+    background:#FDF1E7;
+    flex-direction:column;
+    width:100%;
+    padding:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.08);
+    display:none;
+    border-radius:20px;
+}
+
+nav ul li{
+    margin-bottom:15px;
+}
+
+.menu-toggle{
+    display:block;
+}
+
+}
+.image-wrapper {
+    width: 100%;              
+    height: 400px;            
+    background:  #F3E7DD;     
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;        
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.image-wrapper img {
+    width: 100%;              /* fit wrapper width */
+    height: 100%;             /* keep aspect ratio */
+    object-fit: contain;      /* prevent cropping */
+    display: block;
+}
+/* Content Area */
+.portfolio-content {
+    padding: 25px 20px 30px;
+    max-width: 500px;
+    margin: 60px auto;
+}
+
+
+/* Title */
+.portfolio-content h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+/* Description */
+.portfolio-content p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    opacity: 0.95;
+}
+
+/* Tech Stack */
+.tech {
+    margin-bottom: 25px;
+}
+
+.tech span {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin: 5px 6px 0 0;
+}
+
+/* Buttons Container */
+.portfolio-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Buttons */
+.demo-btn,
+.code-btn {
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+/* Demo Button */
+.demo-btn {
+    background: #ffffff;
+    color: #7b2cbf;
+}
+
+.demo-btn:hover {
+    background: #f0f0f0;
+}
+
+/* Code Button */
+.code-btn {
+    border: 1px solid #ffffff;
+    color: #ffffff;
+}
+@media (max-width: 768px) {
+
+.portfolio-card {
+    max-width: 95%;
+    margin: 40px auto;
+}
+
+.portfolio-content {
+    padding: 20px 15px;
+    text-align: center;   /* center text on mobile */
+}
+
+.portfolio-buttons {
+    justify-content: center;  /* center buttons */
+}
+
+.tech {
+    text-align: center;
+}
+}
+</style>
+<script>
+    function toggleMenu(){
+        var menu = document.getElementById("nav-links");
+            menu.style.display = "flex";
+    }
+</script>
+<body>
+    
+
+        <!-- Navbar -->
+        <nav>
+            <h2 class="logo">
+                <span class="logo-box">MS</span>
+                <span class="logo-text">Web Developer</span>
+            </h2>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                ☰
+            </div>
+            <ul id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#" class="active">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    
+
+        <div class="portfolio-card">
+            <div class="image-wrapper">
+                <img src="Dashboard.png" alt="Admin Dashboard">
+            </div>
+            <div class="portfolio-content">
+                <h3>School Management System</h3>
+                <p>A complete academic management platform for schools.</p>
+                <div class="tech">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>PHP</span>
+                    <span>MySQL</span>
+                </div>
+                <div class="portfolio-buttons">
+                    <a href="#" class="demo-btn">Live Demo</a>
+                    <a href="#" class="code-btn">View Code</a>
+                </div>
+            </div>
+        </div>
+    
+        <footer class="footer-section">
+            <div class="footer-container">
+        
+                <!-- About / Brand -->
+                <div class="footer-brand">
+                    <h2 class="logo">
+                        <span class="logo-box">MS</span>
+                        <span class="logo-text">Web Developer</span>
+                    </h2>
+                    <p>Building modern, secure, and responsive websites and systems for schools and businesses.</p>
+                </div>
+        
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+        
+                <!-- Contact Info -->
+                <!-- Contact Info -->
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <p>Email: <a href="mailto:masoyinshehu75@gmail.com">masoyinshehu75@gmail.com</a></p>
+                <p>WhatsApp: <a href="https://wa.me/2349133245515" target="_blank">+234 913 324 5515</a></p>
+                <p>Location:Opposite Kofar Hausa Ahuwa Bread,<br>Keffi, Nasarawa State Nigeria</p>
+            </div>
+        
+            </div>
+        
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 MS-Web Developer. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+</body>
+</html>
