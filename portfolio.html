@@ -3,417 +3,396 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MS-Web Developer</title>
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>MS-Web Developer | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --orange: #FF6A00;
+            --orange-light: #FF8C3A;
+            --orange-glow: rgba(255,106,0,0.15);
+            --bg: #ffffff;
+            --cream: #FDF1E7;
+            --dark: #1a1a1a;
+            --text: #333;
+            --muted: #777;
+            --border: #eee;
+        }
+
+        body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 8%; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: sticky; top: 0; background: #fff; z-index: 100;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: 600; text-decoration: none; }
+        .logo-box { background: var(--orange); color: white; padding: 8px 14px; border-radius: 12px; font-weight: 700; box-shadow: 0 8px 20px rgba(255,106,0,0.3); }
+        .logo-text { color: #222; font-size: 18px; }
+        .menu-toggle { display: none; font-size: 28px; cursor: pointer; background: none; border: none; color: var(--dark); }
+        nav ul { list-style: none; display: flex; gap: 30px; }
+        nav ul li a { text-decoration: none; color: #333; font-weight: 500; transition: color 0.2s; }
+        nav ul li a:hover { color: var(--orange); }
+        nav ul li a.active { color: var(--orange); font-weight: 600; border-bottom: 2px solid var(--orange); padding-bottom: 2px; }
+
+        /* ===== HERO ===== */
+        .portfolio-hero { background: var(--cream); padding: 70px 8% 50px; text-align: center; }
+        .portfolio-hero .tag { display: inline-block; background: var(--orange-glow); color: var(--orange); padding: 6px 18px; border-radius: 30px; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+        .portfolio-hero h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 800; color: var(--dark); line-height: 1.15; margin-bottom: 16px; }
+        .portfolio-hero h1 span { color: var(--orange); }
+        .portfolio-hero p { font-size: 16px; color: var(--muted); max-width: 560px; margin: 0 auto; line-height: 1.7; }
+
+        /* ===== FILTER TABS ===== */
+        .filter-section { padding: 40px 8% 10px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .filter-btn { padding: 9px 22px; border-radius: 30px; border: 1.5px solid var(--border); background: #fff; color: var(--muted); font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.25s ease; font-family: 'Poppins', sans-serif; }
+        .filter-btn:hover { border-color: var(--orange); color: var(--orange); }
+        .filter-btn.active { background: var(--orange); color: #fff; border-color: var(--orange); box-shadow: 0 6px 18px rgba(255,106,0,0.25); }
+
+        /* ===== PROJECTS GRID ===== */
+        .projects-section { padding: 40px 8% 60px; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 30px; }
+
+        /* ===== PROJECT CARD ===== */
+        .project-card { background: #fff; border-radius: 20px; overflow: hidden; border: 1.5px solid var(--border); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
+        .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.09); }.card-image { width: 100%; height: 210px; overflow: hidden; position: relative; }
+        .card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .project-card:hover .card-image img { transform: scale(1.04); }
+
+        .card-image-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 52px; }
+        .bg-blue   { background: linear-gradient(135deg, #e8f4fd, #c2e0f7); }
+        .bg-green  { background: linear-gradient(135deg, #e9fae4, #c3f0b6); }
+        .bg-purple { background: linear-gradient(135deg, #f3eeff, #ddd0fa); }
+        .bg-orange { background: linear-gradient(135deg, #fff4e8, #ffd8a8); }
+        .bg-teal   { background: linear-gradient(135deg, #e4faf8, #b2ede8); }
+        .bg-red    { background: linear-gradient(135deg, #fde8e8, #f7b8b8); }
+        .bg-indigo { background: linear-gradient(135deg, #eef0ff, #c7ccf9); }
+        .bg-yellow { background: linear-gradient(135deg, #fffbe6, #fff0a0); }
+
+        .card-category { position: absolute; top: 14px; left: 14px; background: rgba(255,255,255,0.92); color: var(--orange); font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Coming Soon Badge */
+        .coming-soon-badge { position: absolute; top: 14px; right: 14px; background: var(--dark); color: #fff; font-size: 10px; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Coming Soon overlay */
+        .card-image.coming-soon-img { position: relative; }
+        .coming-soon-overlay { position: absolute; inset: 0; background: rgba(26,26,26,0.55); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+        .coming-soon-overlay span { color: #fff; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        .coming-soon-overlay .cs-icon { font-size: 36px; }
+
+        .card-body { padding: 22px 22px 25px; flex: 1; display: flex; flex-direction: column; }
+        .card-body h3 { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 8px; line-height: 1.4; }
+        .card-body p { font-size: 13.5px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; flex: 1; }
+
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
+        .tech-tag { background: var(--cream); color: var(--orange); font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(255,106,0,0.15); }
+
+        .card-buttons { display: flex; gap: 10px; }
+        .btn-demo { flex: 1; text-align: center; text-decoration: none; padding: 10px 0; border-radius: 12px; font-size: 13px; font-weight: 600; background: var(--orange); color: #fff; transition: all 0.25s ease; box-shadow: 0 5px 15px rgba(255,106,0,0.2); }
+        .btn-demo:hover { background: var(--orange-light); box-shadow: 0 8px 22px rgba(255,106,0,0.35); }
+        .btn-code { flex: 1; text-align: center; text-decoration: none; padding: 10px 0; border-radius: 12px; font-size: 13px; font-weight: 600; border: 1.5px solid var(--border); color: var(--dark); transition: all 0.25s ease; }
+        .btn-code:hover { border-color: var(--orange); color: var(--orange); }
+        .btn-disabled { flex: 1; text-align: center; padding: 10px 0; border-radius: 12px; font-size: 13px; font-weight: 600; background: #f0f0f0; color: #aaa; cursor: not-allowed; }
+
+        /* ===== STATS STRIP ===== */
+        .stats-strip { background: var(--cream); padding: 50px 8%; display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; text-align: center; }
+        .stat h2 { font-size: 40px; font-weight: 800; color: var(--orange); }
+        .stat p { font-size: 14px; color: var(--muted); margin-top: 4px; }/* ===== CTA ===== */
+        .cta-section { padding: 70px 8%; text-align: center; }
+        .cta-section h2 { font-size: clamp(26px, 4vw, 38px); font-weight: 800; color: var(--dark); margin-bottom: 14px; }
+        .cta-section h2 span { color: var(--orange); }
+        .cta-section p { color: var(--muted); font-size: 15px; margin-bottom: 28px; }
+        .cta-btn { display: inline-block; text-decoration: none; background: var(--orange); color: #fff; padding: 14px 36px; border-radius: 14px; font-size: 15px; font-weight: 600; box-shadow: 0 8px 25px rgba(255,106,0,0.3); transition: all 0.25s ease; }
+        .cta-btn:hover { background: var(--orange-light); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(255,106,0,0.4); }
+
+        /* ===== FOOTER ===== */
+        .footer-section { background: var(--cream); padding: 70px 8%; color: #222; margin-top: 20px; }
+        .footer-container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
+        .footer-brand, .footer-links, .footer-contact { flex: 1 1 220px; }
+        .footer-brand .logo { display: flex; align-items: center; gap: 10px; font-weight: 600; margin-bottom: 15px; }
+        .footer-brand .logo-box { background: var(--orange); color: white; padding: 6px 12px; border-radius: 12px; font-weight: 700; box-shadow: 0 8px 20px rgba(255,106,0,0.3); }
+        .footer-brand p { font-size: 14px; color: #555; line-height: 1.65; }
+        .footer-links h3, .footer-contact h3 { color: var(--orange); margin-bottom: 15px; font-size: 16px; }
+        .footer-links ul { list-style: none; padding: 0; }
+        .footer-links ul li { margin-bottom: 10px; }
+        .footer-links ul li a { text-decoration: none; color: #333; transition: 0.3s; font-size: 14px; }
+        .footer-links ul li a:hover { color: var(--orange); }
+        .footer-contact p { font-size: 14px; margin-bottom: 8px; }
+        .footer-contact a { color: #222; text-decoration: none; transition: 0.3s; }
+        .footer-contact a:hover { color: var(--orange); }
+        .footer-bottom { text-align: center; margin-top: 30px; font-size: 13px; color: #777; border-top: 1px solid rgba(0,0,0,0.08); padding-top: 20px; }
+
+        /* Hidden filter */
+        .project-card.hidden { display: none; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            nav { flex-wrap: wrap; padding: 20px 6%; }
+            .menu-toggle { display: block; }
+            nav ul { flex-direction: column; background: var(--cream); width: 100%; padding: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); display: none; border-radius: 20px; }
+            nav ul.active { display: flex; }
+            nav ul li { margin-bottom: 14px; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .stats-strip { gap: 30px; }
+            .portfolio-hero { padding: 50px 6% 40px; }
+            .projects-section, .filter-section { padding-left: 5%; padding-right: 5%; }
+            .footer-container { flex-direction: column; align-items: center; text-align: center; }
+        }
+    </style>
 </head>
-<style>
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    body{
-        background:#ffffff;
-        color:#222;
-        overflow-x: hidden;
-    }
-
-    /* Navbar */
-    nav{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        padding:20px 8%;
-        box-shadow:0 4px 10px rgba(0,0,0,0.05);
-        margin-bottom: 20px;
-    }
-    #nav-links.active{
-        display: flex;
-    }
-
-    .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-weight:600;
-}
-
-.logo-box{
-    background:#FF6A00;
-    color:white;
-    padding:8px 14px;
-    border-radius:12px;
-    font-weight:700;
-    box-shadow:0 8px 20px rgba(255,106,0,0.3);
-}
-
-.logo-text{
-    color:#222;
-    font-size:18px;
-}
-
-    .menu-toggle{
-    display:none;
-    font-size:28px;
-    cursor:pointer;
-}
-
-
-    nav ul{
-        list-style:none;
-        display:flex;
-        gap:30px;
-    }
-
-    nav ul li a{
-        text-decoration:none;
-        color:#333;
-        font-weight:500;
-    }
-
-    nav ul li a:hover{
-        color:#FF6A00;
-    }
-
-.footer-section{
-    background:#FDF1E7;  /* match hero card tone */
-    padding:70px 6%;
-    color:#222;
-    font-family: 'Poppins', sans-serif;
-    margin-top: 40px;
-}
-
-.footer-container{
-    display:flex;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:30px;
-}
-
-
-
-.footer-brand,
-.footer-links,
-.footer-contact{
-    flex:1 1 250px;
-}
-.footer-contact a{
-    color:#222;
-    text-decoration:none;
-    transition:0.3s;
-}
-
-.footer-contact a:hover{
-    color:#FF6A00;
-}
-
-.footer-brand .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-weight:600;
-    margin-bottom:15px;
-}
-
-.footer-brand .logo-box{
-    background:#FF6A00;
-    color:white;
-    padding:6px 12px;
-    border-radius:12px;
-    font-weight:700;
-    box-shadow:0 8px 20px rgba(255,106,0,0.3);
-}
-
-.footer-links h3,
-.footer-contact h3{
-    color:#FF6A00;
-    margin-bottom:15px;
-    font-size:18px;
-}
-
-.footer-links ul{
-    list-style:none;
-    padding:0;
-}
-
-.footer-links ul li{
-    margin-bottom:10px;
-}
-
-.footer-links ul li a{
-    text-decoration:none;
-    color:#222;
-    transition:0.3s;
-}
-nav ul li a.active{
-    color:#FF6A00; /* matches your brand color */
-    font-weight:600;
-    border-bottom: 2px solid #FF6A00; /* optional underline for emphasis */
-    padding-bottom:2px;
-}
-
-.footer-links ul li a:hover{
-    color:#FF6A00;
-}
-
-.footer-bottom{
-    text-align:center;
-    margin-top:30px;
-    font-size:14px;
-    color:#555;
-    border-top:1px solid rgba(0,0,0,0.1);
-    padding-top:15px;
-}
-
-@media (max-width:768px){
-    .footer-container{
-        flex-direction:column;
-        align-items:center;
-        text-align:center;
-        gap:25px;
-    }
-
-    .footer-links ul li a,
-    .footer-contact p{
-        font-size:14px;
-    }
-}
-
-/* ============================= */
-/* RESPONSIVE DESIGN */
-/* ============================= */
-
-@media (max-width: 992px){
-
-/* Mobile Nav */
-
-nav{
-    flex-wrap: wrap;
-    padding: 20px 6%;
-}
-
-.menu-toggle{
-    display: block;
-}
-
-nav ul{
-    flex-direction: column;
-    background:#FDF1E7;
-    flex-direction:column;
-    width:100%;
-    padding:20px;
-    box-shadow:0 15px 35px rgba(0,0,0,0.08);
-    display:none;
-    border-radius:20px;
-}
-
-nav ul li{
-    margin-bottom:15px;
-}
-
-.menu-toggle{
-    display:block;
-}
-
-}
-.image-wrapper {
-    width: 100%;              
-    height: 400px;            
-    background:  #F3E7DD;     
-    border-radius: 20px 20px 0 0;
-    overflow: hidden;        
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-}
-
-.image-wrapper img {
-    width: 100%;              /* fit wrapper width */
-    height: 100%;             /* keep aspect ratio */
-    object-fit: contain;      /* prevent cropping */
-    display: block;
-}
-/* Content Area */
-.portfolio-content {
-    padding: 25px 20px 30px;
-    max-width: 500px;
-    margin: 60px auto;
-}
-
-
-/* Title */
-.portfolio-content h3 {
-    font-size: 22px;
-    margin-bottom: 12px;
-    font-weight: 600;
-}
-
-/* Description */
-.portfolio-content p {
-    font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    opacity: 0.95;
-}
-
-/* Tech Stack */
-.tech {
-    margin-bottom: 25px;
-}
-
-.tech span {
-    display: inline-block;
-    background: rgba(255,255,255,0.15);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    margin: 5px 6px 0 0;
-}
-
-/* Buttons Container */
-.portfolio-buttons {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-/* Buttons */
-.demo-btn,
-.code-btn {
-    text-decoration: none;
-    padding: 8px 18px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 500;
-    transition: 0.3s ease;
-}
-
-/* Demo Button */
-.demo-btn {
-    background: #ffffff;
-    color: #7b2cbf;
-}
-
-.demo-btn:hover {
-    background: #f0f0f0;
-}
-
-/* Code Button */
-.code-btn {
-    border: 1px solid #ffffff;
-    color: #ffffff;
-}
-@media (max-width: 768px) {
-
-.portfolio-card {
-    max-width: 95%;
-    margin: 40px auto;
-}
-
-.portfolio-content {
-    padding: 20px 15px;
-    text-align: center;   /* center text on mobile */
-}
-
-.portfolio-buttons {
-    justify-content: center;  /* center buttons */
-}
-
-.tech {
-    text-align: center;
-}
-}
-</style>
-<script>
-    function toggleMenu(){
-        var menu = document.getElementById("nav-links");
-            menu.style.display = "flex";
-    }
-</script>
 <body>
-    
 
-        <!-- Navbar -->
-        <nav>
-            <h2 class="logo">
-                <span class="logo-box">MS</span>
-                <span class="logo-text">Web Developer</span>
-            </h2>
-            <div class="menu-toggle" onclick="toggleMenu()">
-                ☰
-            </div>
-            <ul id="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="#" class="active">Portfolio</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    
+    <!-- NAVBAR -->
+    <nav>
+        <a href="index.html" class="logo">
+            <span class="logo-box">MS</span>
+            <span class="logo-text">Web Developer</span>
+        </a>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+        <ul id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html" class="active">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
 
-        <div class="portfolio-card">
-            <div class="image-wrapper">
-                <img src="Dashboard.png" alt="Admin Dashboard">
-            </div>
-            <div class="portfolio-content">
-                <h3>School Management System</h3>
-                <p>A complete academic management platform for schools.</p>
-                <div class="tech">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>PHP</span>
-                    <span>MySQL</span>
+    <!-- HERO -->
+    <section class="portfolio-hero">
+        <div class="tag">My Work</div>
+        <h1>Projects I've <span>Built</span></h1>
+        <p>A showcase of real-world web systems, dashboards, and applications I've developed — from school management to GPS-based attendance tracking.</p>
+    </section><!-- FILTER TABS -->
+    <div class="filter-section">
+        <button class="filter-btn active" onclick="filterProjects('all', this)">All Projects</button>
+        <button class="filter-btn" onclick="filterProjects('management', this)">Management Systems</button>
+        <button class="filter-btn" onclick="filterProjects('booking', this)">Booking Systems</button>
+        <button class="filter-btn" onclick="filterProjects('tracking', this)">Tracking & Analytics</button>
+        <button class="filter-btn" onclick="filterProjects('coming', this)">Coming Soon</button>
+    </div>
+
+    <!-- PROJECTS GRID -->
+    <section class="projects-section">
+        <div class="projects-grid" id="projects-grid">
+
+            <!-- 1. 5 Star Solution -->
+            <div class="project-card" data-category="management">
+                <div class="card-image">
+                    <!-- Replace src with your screenshot: <img src="5star.png" alt="5 Star Solution"> -->
+                    <div class="card-image-placeholder bg-orange">⭐</div>
+                    <span class="card-category">Management System</span>
                 </div>
-                <div class="portfolio-buttons">
-                    <a href="#" class="demo-btn">Live Demo</a>
-                    <a href="#" class="code-btn">View Code</a>
+                <div class="card-body">
+                    <h3>5 Star Solution</h3>
+                    <p>A business management platform for keeping records of products, managing admin pages, and tracking staff records in one place.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                    <div class="card-buttons">
+                        <a href="https://5starsolution.com.ng/login.php" target="_blank" class="btn-demo">Live Demo</a>
+                        <a href="#" class="btn-code">View Code</a>
+                    </div>
                 </div>
             </div>
+
+            <!-- 2. Transportation Booking System -->
+            <div class="project-card" data-category="booking">
+                <div class="card-image">
+                    <!-- Replace with: <img src="transport.png" alt="Transportation Booking"> -->
+                    <div class="card-image-placeholder bg-teal">🚌</div>
+                    <span class="card-category">Booking System</span>
+                </div>
+                <div class="card-body">
+                    <h3>Transportation Booking System</h3>
+                    <p>An online platform for booking transport tickets, managing routes and schedules, and tracking passenger records.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <div class="card-buttons">
+                        <a href="#" class="btn-demo">Live Demo</a>
+                        <a href="#" class="btn-code">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. School Management System -->
+            <div class="project-card" data-category="management">
+                <div class="card-image">
+                    <!-- Replace with: <img src="school.png" alt="School Management"> -->
+                    <div class="card-image-placeholder bg-blue">🏫</div>
+                    <span class="card-category">Management System</span>
+                </div>
+                <div class="card-body">
+                    <h3>School Management System</h3>
+                    <p>A complete academic platform with online payments, result generation, attendance records, analytics dashboard, and student/staff management.</p><div class="tech-stack">
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <div class="card-buttons">
+                        <a href="#" class="btn-demo">Live Demo</a>
+                        <a href="#" class="btn-code">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Hospital Appointment Scheduling -->
+            <div class="project-card" data-category="booking">
+                <div class="card-image">
+                    <!-- Replace with: <img src="hospital.png" alt="Hospital Appointment"> -->
+                    <div class="card-image-placeholder bg-red">🏥</div>
+                    <span class="card-category">Booking System</span>
+                </div>
+                <div class="card-body">
+                    <h3>Hospital Appointment Scheduling</h3>
+                    <p>Allows patients to book appointments with doctors online, manage schedules, and receive appointment confirmations with ease.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <div class="card-buttons">
+                        <a href="#" class="btn-demo">Live Demo</a>
+                        <a href="#" class="btn-code">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Coming Soon: Public Complaint Management -->
+            <div class="project-card" data-category="coming">
+                <div class="card-image coming-soon-img">
+                    <div class="card-image-placeholder bg-purple">📢</div>
+                    <div class="coming-soon-overlay">
+                        <span class="cs-icon">🔧</span>
+                        <span>In Development</span>
+                    </div>
+                    <span class="card-category">Tracking System</span>
+                    <span class="coming-soon-badge">Coming Soon</span>
+                </div>
+                <div class="card-body">
+                    <h3>Public Complaint Management & Response Tracking System</h3>
+                    <p>A platform for citizens to submit complaints to authorities, track response status in real time, and ensure accountability and transparency.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <div class="card-buttons">
+                        <span class="btn-disabled">In Progress...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Coming Soon: GPS Attendance System -->
+            <div class="project-card" data-category="coming">
+                <div class="card-image coming-soon-img">
+                    <div class="card-image-placeholder bg-indigo">📍</div>
+                    <div class="coming-soon-overlay">
+                        <span class="cs-icon">🔧</span>
+                        <span>In Development</span></div>
+                    <span class="card-category">Tracking System</span>
+                    <span class="coming-soon-badge">Coming Soon</span>
+                </div>
+                <div class="card-body">
+                    <h3>GPS-Based Online Class Attendance System</h3>
+                    <p>Uses real-time GPS location verification to mark students present only when they are physically within the designated class location or meter range.</p><div class="tech-stack">
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Geolocation API</span>
+                        <span class="tech-tag">CSS</span>
+                    </div>
+                    <div class="card-buttons">
+                        <span class="btn-disabled">In Progress...</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    
-        <footer class="footer-section">
-            <div class="footer-container">
-        
-                <!-- About / Brand -->
-                <div class="footer-brand">
-                    <h2 class="logo">
-                        <span class="logo-box">MS</span>
-                        <span class="logo-text">Web Developer</span>
-                    </h2>
-                    <p>Building modern, secure, and responsive websites and systems for schools and businesses.</p>
-                </div>
-        
-                <!-- Quick Links -->
-                <div class="footer-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-        
-                <!-- Contact Info -->
-                <!-- Contact Info -->
+    </section>
+
+    <!-- STATS STRIP -->
+    <div class="stats-strip">
+        <div class="stat"><h2>6+</h2><p>Projects Completed</p></div>
+        <div class="stat"><h2>2</h2><p>In Development</p></div>
+        <div class="stat"><h2>3+</h2><p>Years Experience</p></div>
+        <div class="stat"><h2>5+</h2><p>Happy Clients</p></div>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Have a Project in <span>Mind?</span></h2>
+        <p>I'm open to freelance work and full-time opportunities. Let's build something great together.</p>
+        <a href="contact.html" class="cta-btn">Get In Touch →</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h2 class="logo">
+                    <span class="logo-box">MS</span>
+                    <span class="logo-text">Web Developer</span>
+                </h2>
+                <p>Building modern, secure, and responsive websites and systems for schools and businesses.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
             <div class="footer-contact">
                 <h3>Contact</h3>
                 <p>Email: <a href="mailto:masoyinshehu75@gmail.com">masoyinshehu75@gmail.com</a></p>
                 <p>WhatsApp: <a href="https://wa.me/2349133245515" target="_blank">+234 913 324 5515</a></p>
-                <p>Location:Opposite Kofar Hausa Ahuwa Bread,<br>Keffi, Nasarawa State Nigeria</p>
+                <p>Location: Opposite Kofar Hausa Ahuwa Bread,<br>Keffi, Nasarawa State Nigeria</p>
             </div>
-        
-            </div>
-        
-            <!-- Copyright -->
-            <div class="footer-bottom">
-                <p>&copy; 2026 MS-Web Developer. All Rights Reserved.</p>
-            </div>
-        </footer>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MS-Web Developer. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("nav-links").classList.toggle("active");
+        }
+
+        function filterProjects(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.project-card').forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
