@@ -1,659 +1,1169 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MS-Web Developer</title>
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <meta name="description" content="Yakubu Umar is a Web Developer, Data Analyst, and Machine Learning Developer building modern web applications, data-driven solutions, and intelligent systems.">
+    <meta name="theme-color" content="#FF6A00">
+
+    <title>Yakubu Umar | Web Developer, Data Analyst & Machine Learning Developer</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #FF6A00;
+            --primary-dark: #e85d00;
+            --text: #222222;
+            --muted: #606060;
+            --cream: #FDF1E7;
+            --white: #ffffff;
+            --border: #f0e4da;
+            --shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--white);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 7%;
+            background: rgba(255, 255, 255, 0.97);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .logo-box {
+            background: var(--primary);
+            color: white;
+            padding: 7px 13px;
+            border-radius: 11px;
+            box-shadow: 0 7px 18px rgba(255, 106, 0, 0.22);
+        }
+
+        .logo-text {
+            font-size: 17px;
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        nav ul a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul a:hover,
+        nav ul a.active {
+            color: var(--primary);
+        }
+
+        nav ul a.active {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 5px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: var(--cream);
+            color: var(--primary);
+            border: none;
+            border-radius: 9px;
+            padding: 6px 12px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        /* HERO SECTION */
+
+        .hero-section {
+            padding: 65px 7%;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.4fr);
+            align-items: center;
+            gap: 40px;
+            max-width: 1450px;
+            margin: auto;
+        }
+
+        .hero-card {
+            background: linear-gradient(
+                135deg,
+                #FDF1E7,
+                #F7E8DC,
+                #F3E7DD
+            );
+            padding: 38px;
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-wrapper {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin-bottom: 25px;
+        }
+
+        .profile-bg {
+            position: absolute;
+            inset: 0;
+            width: 160px;
+            height: 160px;
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .profile-img {
+            position: absolute;
+            width: 132px;
+            height: 132px;
+            object-fit: cover;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        .hero-card h1 {
+            font-size: clamp(25px, 3vw, 34px);
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+
+        .role {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .desc {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 11px 19px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            border: 2px solid var(--primary);
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* SKILLS AND SERVICES */
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 25px 22px;
+            border: 1px solid #f3ece6;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 38px rgba(0, 0, 0, 0.09);
+        }
+
+        .skill-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 47px;
+            height: 47px;
+            border-radius: 13px;
+            background: var(--cream);
+            font-size: 23px;
+            margin-bottom: 15px;
+        }
+
+        .stat-box h3 {
+            color: var(--primary);
+            font-size: 17px;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .stat-box p {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .stat-box ul {
+            list-style: none;
+        }
+
+        .stat-box ul li {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 8px;
+            padding-left: 17px;
+            position: relative;
+        }
+
+        .stat-box ul li::before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+
+        /* SECTION HEADINGS */
+
+        .section-heading {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+
+        .section-label {
+            display: inline-block;
+            color: var(--primary);
+            background: #fff;
+            border: 1px solid #f6d9c5;
+            border-radius: 30px;
+            padding: 5px 15px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(25px, 3vw, 32px);
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* PROJECTS */
+
+        .projects-section {
+            padding: 70px 7%;
+            background: #fff8f2;
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background: white;
+            border: 1px solid #f1e9e2;
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            min-width: 0;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card img,
+        .project-visual {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-bottom: 17px;
+        }
+
+        .project-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--primary);
+            background: linear-gradient(135deg, #fff0e3, #f9dfca);
+        }
+
+        .project-visual span {
+            font-size: 45px;
+        }
+
+        .project-visual strong {
+            font-size: 14px;
+        }
+
+        .project-category {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            color: #b74b00;
+            background: #fff0e3;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+
+        .project-card h3 {
+            color: var(--text);
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 18px;
+        }
+
+        .tech-stack span {
+            font-size: 10px;
+            padding: 4px 8px;
+            background: #f5f5f5;
+            color: #555;
+            border-radius: 6px;
+        }
+
+        .project-card .btn {
+            margin-top: auto;
+        }
+
+        /* CONTACT CTA */
+
+        .contact-cta {
+            padding: 65px 7%;
+            text-align: center;
+        }
+
+        .contact-box {
+            max-width: 900px;
+            margin: auto;
+            padding: 45px 25px;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #FDF1E7, #F7E4D5);
+        }
+
+        .contact-box h2 {
+            font-size: clamp(23px, 3vw, 31px);
+            margin-bottom: 12px;
+        }
+
+        .contact-box p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+
+        /* FOOTER */
+
+        .footer-section {
+            background: #FDF1E7;
+            padding: 50px 7% 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1.3fr;
+            gap: 40px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p,
+        .footer-contact p {
+            color: #555;
+            font-size: 12px;
+            margin-bottom: 10px;
+            overflow-wrap: anywhere;
+        }
+
+        .footer-links h3,
+        .footer-contact h3 {
+            color: var(--primary);
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 9px;
+        }
+
+        .footer-links a,
+        .footer-contact a {
+            color: #333;
+            font-size: 12px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover,
+        .footer-contact a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 18px;
+            color: #666;
+            font-size: 11px;
+        }
+
+        /* TABLET */
+
+        @media (max-width: 1050px) {
+            nav {
+                padding: 18px 5%;
+            }
+
+            nav ul {
+                gap: 18px;
+            }
+
+            .hero-section,
+            .projects-section,
+            .contact-cta,
+            .footer-section {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .hero-container {
+                grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+                gap: 25px;
+            }
+
+            .hero-card {
+                padding: 28px;
+            }
+
+            .stats-container {
+                gap: 14px;
+            }
+
+            .stat-box {
+                padding: 20px 16px;
+            }
+
+            .projects-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        /* MOBILE NAVIGATION AND LAYOUT */
+
+        @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+                padding: 15px 5%;
+            }
+
+            .logo-text {
+                font-size: 15px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                width: 100%;
+                margin-top: 16px;
+                padding: 12px;
+                border-radius: 15px;
+                background: var(--cream);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 11px 10px;
+            }
+
+            nav ul a.active {
+                border-bottom: none;
+                background: white;
+                border-radius: 8px;
+            }
+
+            .hero-section {
+                padding-top: 35px;
+                padding-bottom: 45px;
+            }
+
+            .hero-container {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 25px;
+            }
+
+            .hero-card {
+                padding: 30px 24px;
+                text-align: center;
+            }
+
+            .profile-wrapper {
+                width: 140px;
+                height: 140px;
+                margin: 0 auto 22px;
+            }
+
+            .profile-bg {
+                width: 140px;
+                height: 140px;
+            }
+
+            .profile-img {
+                width: 114px;
+                height: 114px;
+            }
+
+            .hero-card h1 {
+                font-size: 27px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .stat-box {
+                padding: 20px 16px;
+            }
+
+            .projects-section {
+                padding-top: 50px;
+                padding-bottom: 50px;
+            }
+
+            .projects-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 16px;
+            }
+
+            .project-card {
+                padding: 12px;
+            }
+
+            .project-card img,
+            .project-visual {
+                height: 145px;
+            }
+
+            .project-card h3 {
+                font-size: 14px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 28px;
+            }
+
+            .footer-brand .logo {
+                justify-content: center;
+            }
+
+            .footer-links li {
+                margin-bottom: 12px;
+            }
+        }
+
+        /* SMALL PHONES */
+
+        @media (max-width: 420px) {
+            .hero-card {
+                padding: 25px 18px;
+            }
+
+            .role {
+                font-size: 12px;
+            }
+
+            .desc {
+                font-size: 13px;
+            }
+
+            .hero-buttons .btn {
+                padding: 10px 13px;
+                font-size: 12px;
+            }
+
+            .stats-container {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .stat-box {
+                padding: 22px;
+            }
+
+            .projects-container {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .project-card {
+                padding: 16px;
+            }
+
+            .project-card img,
+            .project-visual {
+                height: 190px;
+            }
+
+            .section-heading {
+                margin-bottom: 28px;
+            }
+        }
+
+        /* ACCESSIBILITY */
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid #ffb27d;
+            outline-offset: 4px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
-<style>
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family: 'Poppins', sans-serif;
-    }
 
-    body{
-        background:#ffffff;
-        color:#222;
-    }
-
-    /* Navbar */
-    nav{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        padding:20px 8%;
-        box-shadow:0 4px 10px rgba(0,0,0,0.05);
-    }
-    #nav-links.active{
-        display: flex;
-    }
-
-    .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-weight:600;
-}
-
-.logo-box{
-    background:#FF6A00;
-    color:white;
-    padding:8px 14px;
-    border-radius:12px;
-    font-weight:700;
-    box-shadow:0 8px 20px rgba(255,106,0,0.3);
-}
-
-.logo-text{
-    color:#222;
-    font-size:18px;
-}
-
-    .menu-toggle{
-    display:none;
-    font-size:28px;
-    cursor:pointer;
-}
-
-
-    nav ul{
-        list-style:none;
-        display:flex;
-        gap:30px;
-    }
-
-    nav ul li a{
-        text-decoration:none;
-        color:#333;
-        font-weight:500;
-    }
-
-    nav ul li a:hover{
-        color:#FF6A00;
-    }
-
-    /* Hero Section */
-    .hero-section{
-    padding:60px 6%;
-}
-
-.hero-container{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:50px;
-}
-
-/* Left Big Cream Card */
-.hero-card{
-    background: linear-gradient(
-        135deg,
-        #FDF1E7 0%,
-        #F7E8DC 50%,
-        #F3E7DD 100%
-    );
-    padding:50px;
-    border-radius:30px;
-    box-shadow:0 20px 40px rgba(0,0,0,0.08);
-    max-width:400px;
-}
-
-.profile-wrapper{
-    position: relative;
-    width: 170px;
-    height: 170px;
-    margin-bottom: 20px;
-}
-.profile-bg{
-    position: absolute;
-    width: 170px;
-    height: 170px;
-    background: #ffffff;
-    border-radius: 50%;
-    border: 3px solid #FF6A00;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-    top: 0;
-    left: 0;
-}
-
-.profile-img{
-    position: absolute;
-    width:140px;
-    height:140px;
-    border-radius:50%;
-    object-fit: cover;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-}
-
-.role{
-    color:#FF6A00;
-    margin-bottom:15px;
-}
-
-.desc{
-    color:#555;
-    margin-bottom:25px;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:15px;
-}
-
-/* Buttons */
-.btn{
-    background:#FF6A00;
-    color:white;
-    padding:12px 25px;
-    border-radius:12px;
-    text-decoration:none;
-    font-weight:500;
-    box-shadow:0 10px 25px rgba(255,106,0,0.3);
-    transition:0.3s;
-}
-
-.btn:hover{
-    background:#e85d00;
-}
-
-/* Floating Stat Boxes */
-.stats-container{
-    display:flex;
-    gap:25px;
-}
-
-.stat-box{
-    background:white;
-    padding:25px 35px;
-    border-radius:20px;
-    box-shadow:0 15px 35px rgba(0,0,0,0.06);
-}
-
-.stat-box h3{
-    color:#FF6A00;
-    font-size:20px;
-}
-
-.projects-section{
-    padding:60px 6%;
-    background:#fdf1e7; /* match hero card gradient tone */
-}
-
-.section-title{
-    text-align:center;
-    font-size:28px;
-    color:#FF6A00;
-    margin-bottom:40px;
-    font-weight:700;
-}
-
-.projects-container{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap:30px;
-}
-
-.project-card{
-    background:white;
-    border-radius:25px;
-    padding:20px;
-    box-shadow:0 15px 35px rgba(0,0,0,0.06);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    transition:0.3s;
-}
-
-.project-card:hover{
-    transform: translateY(-5px);
-    box-shadow:0 20px 40px rgba(0,0,0,0.1);
-}
-
-.project-card img{
-    width:100%;
-    border-radius:20px;
-    margin-bottom:20px;
-    object-fit:cover;
-}
-
-.project-card h3{
-    color:#FF6A00;
-    margin-bottom:10px;
-}
-
-.project-card p{
-    color:#555;
-    font-size:14px;
-    text-align:center;
-    margin-bottom:15px;
-}
-
-.project-card .btn{
-    padding:10px 20px;
-    font-size:14px;
-}
-
-.footer-section{
-    background:#FDF1E7;  /* match hero card tone */
-    padding:60px 6% 20px;
-    color:#222;
-    font-family: 'Poppins', sans-serif;
-    margin-top: 40px;
-}
-
-.footer-container{
-    display:flex;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:30px;
-}
-
-.footer-brand,
-.footer-links,
-.footer-contact{
-    flex:1 1 250px;
-}
-.footer-contact a{
-    color:#222;
-    text-decoration:none;
-    transition:0.3s;
-}
-
-.footer-contact a:hover{
-    color:#FF6A00;
-}
-
-.footer-brand .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-weight:600;
-    margin-bottom:15px;
-}
-
-.footer-brand .logo-box{
-    background:#FF6A00;
-    color:white;
-    padding:6px 12px;
-    border-radius:12px;
-    font-weight:700;
-    box-shadow:0 8px 20px rgba(255,106,0,0.3);
-}
-
-.footer-links h3,
-.footer-contact h3{
-    color:#FF6A00;
-    margin-bottom:15px;
-    font-size:18px;
-}
-
-.footer-links ul{
-    list-style:none;
-    padding:0;
-}
-
-.footer-links ul li{
-    margin-bottom:10px;
-}
-
-.footer-links ul li a{
-    text-decoration:none;
-    color:#222;
-    transition:0.3s;
-}
-nav ul li a.active{
-    color:#FF6A00; /* matches your brand color */
-    font-weight:600;
-    border-bottom: 2px solid #FF6A00; /* optional underline for emphasis */
-    padding-bottom:2px;
-}
-
-.footer-links ul li a:hover{
-    color:#FF6A00;
-}
-
-.footer-bottom{
-    text-align:center;
-    margin-top:30px;
-    font-size:14px;
-    color:#555;
-    border-top:1px solid rgba(0,0,0,0.1);
-    padding-top:15px;
-}
-
-@media (max-width:768px){
-
-.profile-wrapper{
-    width: 130px;   /* smaller for mobile */
-    height: 130px;
-    margin:auto;    /* center on small screens */
-}
-
-.profile-bg{
-    width: 130px;
-    height: 130px;
-    border-width: 5px;  /* thinner border for mobile */
-}
-
-.profile-img{
-    width: 100px;
-    height: 100px;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);
-}
-
-}
-
-@media (max-width:768px){
-    .projects-section{
-        padding:40px 5%;
-    }
-
-    .section-title{
-        font-size:24px;
-    }
-
-    .project-card h3{
-        font-size:18px;
-    }
-
-    .project-card p{
-        font-size:13px;
-    }
-
-    .project-card .btn{
-        font-size:13px;
-        padding:8px 16px;
-    }
-}
-
-@media (max-width:768px){
-    .footer-container{
-        flex-direction:column;
-        align-items:center;
-        text-align:center;
-        gap:25px;
-    }
-
-    .footer-links ul li a,
-    .footer-contact p{
-        font-size:14px;
-    }
-}
-
-/* ============================= */
-/* RESPONSIVE DESIGN */
-/* ============================= */
-
-@media (max-width: 992px){
-
-/* Mobile Nav */
-
-nav{
-    flex-wrap: wrap;
-    padding: 20px 6%;
-}
-
-.menu-toggle{
-    display: block;
-}
-
-nav ul{
-    flex-direction: column;
-    background:#FDF1E7;
-    flex-direction:column;
-    width:100%;
-    padding:20px;
-    box-shadow:0 15px 35px rgba(0,0,0,0.08);
-    display:none;
-    border-radius:20px;
-}
-
-nav ul li{
-    margin-bottom:15px;
-}
-
-.menu-toggle{
-    display:block;
-}
-
-.hero-container{
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-}
-
-.hero-card{
-    max-width:100%;
-    width: 100%;
-}
-
-.hero-card h2{
-    font-size: 24px;
-}
-
-.hero-card.role{
-    font-size: 16px;
-}
-.hero-card .desc{
-    font-size: 14px;
-    line-height: 1.6;
-}
-.hero-buttons .btn{
-    padding: 10px 18px;
-    font-size: 14px;
-}
-.profile-wrapper{
-    margin:auto;
-}
-
-.hero-buttons{
-    justify-content:center;
-    flex-wrap:wrap;
-    gap: 10px;
-}
-
-.stats-container{
-    flex-direction:column;
-    width:100%;
-    margin-top:30px;
-    gap: 15px;
-}
-
-.stat-box{
-    width:100%;
-}
-.stat-box{
-    padding: 20px;
-}
-.stat-box h3{
-    font-size: 18px;
-}
-.stat-box ul li{
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.stat-box ul{
-    list-style-position: inside;
-    text-align: left;
-    padding: 0;
-}
-}
-
-</style>
-<script>
-    function toggleMenu(){
-        var menu = document.getElementById("nav-links");
-            menu.style.display = "flex";
-    }
-</script>
 <body>
-    
 
-        <!-- Navbar -->
-        <nav>
-            <h2 class="logo">
-                <span class="logo-box">MS</span>
-                <span class="logo-text">Web Developer</span>
-            </h2>
-            <div class="menu-toggle" onclick="toggleMenu()">
-                ☰
-            </div>
-            <ul id="nav-links">
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    
-        <!-- Hero Section -->
+    <!-- NAVIGATION -->
+    <nav aria-label="Main navigation">
+        <a href="index.html" class="logo" style="text-decoration:none;">
+            <span class="logo-box">MS</span>
+            <span class="logo-text">Web Developer</span>
+        </a>
+
+        <button
+            class="menu-toggle"
+            id="menu-toggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="nav-links">
+            ☰
+        </button>
+
+        <ul id="nav-links">
+            <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <!-- HERO SECTION -->
         <section class="hero-section">
-
             <div class="hero-container">
-        
-                <!-- Left Profile Card -->
+
                 <div class="hero-card">
                     <div class="profile-wrapper">
                         <div class="profile-bg"></div>
-                    <img src="Circle2.jpg" class="profile-img">
+                        <img
+                            src="Circle2.jpg"
+                            class="profile-img"
+                            alt="Portrait of Yakubu Umar"
+                            fetchpriority="high">
                     </div>
-        
-                    <h2>Yakubu Umar</h2>
-                    <p class="role">Web Developer</p>
-        
-                    <p class="desc">
-                        I design and develop modern, high-performance websites,
-                        management systems, and payment solution that help
-                        schools and businesses grow, operate efficiently, and 
-                        increase revenue.
-                        <br>
-                        From idea to deployment, i build secure, scalabe,
-                        and user-friendly digital solutions tailored to your needs.
+
+                    <h1>Yakubu Umar</h1>
+
+                    <p class="role">
+                        Web Developer | Data Analyst | Machine Learning Developer
                     </p>
-        
+
+                    <p class="desc">
+                        I build modern, responsive websites and web applications,
+                        transform raw data into meaningful insights, and develop
+                        machine learning solutions to solve real-world problems.
+                        My work combines web development, data analysis, and
+                        intelligent technologies to deliver practical digital solutions.
+                    </p>
+
                     <div class="hero-buttons">
-                        <a href="portfolio.html" class="btn">View Portfolio</a>
-                        <a href="https://wa.me/2349133245515" class="btn">Hire Me</a>
+                        <a href="portfolio.html" class="btn">Explore My Projects</a>
+                        <a
+                            href="https://wa.me/2349133245515"
+                            class="btn btn-outline"
+                            target="_blank"
+                            rel="noopener noreferrer">Hire Me</a>
                     </div>
                 </div>
-        
-                <!-- Right Stats -->
+
+                <!-- SKILLS AND SERVICES -->
                 <div class="stats-container">
-                    <div class="stat-box">
-                        <h3>Academic Solutions</h3>
+
+                    <article class="stat-box">
+                        <div class="skill-icon" aria-hidden="true">💻</div>
+                        <h3>Web Development</h3>
+                        <p>Building functional and responsive digital experiences.</p>
                         <ul>
-                            <li>Academic Management Sysytem</li>
-                            <li>Online Admissioin Portal</li>
-                            <li>Result & Grading Sysytem</li>
-                            <li>Attendance Tracking</li>
+                            <li>Responsive websites</li>
+                            <li>PHP and MySQL applications</li>
+                            <li>School management systems</li>
+                            <li>Business and payment portals</li>
                         </ul>
-                    </div>
-        
-                    <div class="stat-box">
-                        <h3>Business Solution</h3>
+                    </article>
+
+                    <article class="stat-box">
+                        <div class="skill-icon" aria-hidden="true">📊</div>
+                        <h3>Data Analysis</h3>
+                        <p>Turning raw data into useful information for decisions.</p>
                         <ul>
-                            <li>Company Website</li>
-                            <li>Real Estate Website</li>
-                            <li>Inventory Management Sysytem</li>
-                            <li>Business Dashboard</li>
+                            <li>Data cleaning and preparation</li>
+                            <li>Microsoft Excel</li>
+                            <li>Power BI dashboards</li>
+                            <li>Data visualization and reporting</li>
                         </ul>
-                    </div>
-        
-                    <div class="stat-box">
-                        <h3>Payment & Automation</h3>
+                    </article>
+
+                    <article class="stat-box">
+                        <div class="skill-icon" aria-hidden="true">🤖</div>
+                        <h3>Machine Learning</h3>
+                        <p>Developing data-driven models for real-world problems.</p>
                         <ul>
-                            <li>Paystack Integration</li>
-                            <li>Online Payment Portal</li>
-                            <li>Transaction Management Sysytem</li>
-                            <li>Admin Control</li>
+                            <li>Python and data preprocessing</li>
+                            <li>Predictive modeling</li>
+                            <li>Image classification</li>
+                            <li>Model evaluation and deployment</li>
                         </ul>
-                    </div>
+                    </article>
+
+                    <article class="stat-box">
+                        <div class="skill-icon" aria-hidden="true">📈</div>
+                        <h3>Data-Driven Solutions</h3>
+                        <p>Combining analysis, software, and intelligent systems.</p>
+                        <ul>
+                            <li>Exploratory data analysis</li>
+                            <li>Pattern discovery</li>
+                            <li>Predictive insights</li>
+                            <li>Integrating models into applications</li>
+                        </ul>
+                    </article>
+
                 </div>
-        
             </div>
-        
         </section>
-        <section class="projects-section">
-            <h2 class="section-title">Recent Projects</h2>
-        
+
+        <!-- RECENT PROJECTS -->
+        <section class="projects-section" id="projects">
+            <div class="section-heading">
+                <span class="section-label">My Work</span>
+                <h2 class="section-title">Featured <span>Projects</span></h2>
+                <p>
+                    Explore my work across web development and machine learning,
+                    from practical business systems to intelligent applications.
+                </p>
+            </div>
+
             <div class="projects-container">
-        
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <img src="Stu.png" alt="Project 1">
+
+                <!-- WEB DEVELOPMENT PROJECT -->
+                <article class="project-card">
+                    <img
+                        src="Stu.png"
+                        alt="Academic management system interface"
+                        loading="lazy">
+
+                    <span class="project-category">Web Development</span>
+
                     <h3>Academic Management System</h3>
-                    <p>Web-based system to manage students, results, and attendance.</p>
-                    <a href="#" class="btn">View Demo</a>
-                </div>
-        
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <img src="Com.png" alt="Project 2">
+
+                    <p>
+                        A web-based application designed to manage student records,
+                        academic results, grading, and attendance.
+                    </p>
+
+                    <div class="tech-stack">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>PHP</span>
+                        <span>MySQL</span>
+                    </div>
+
+                    <a href="portfolio.html" class="btn">Explore Project</a>
+                </article>
+
+                <!-- WEB DEVELOPMENT PROJECT -->
+                <article class="project-card">
+                    <img
+                        src="Com.png"
+                        alt="Company website project"
+                        loading="lazy">
+
+                    <span class="project-category">Web Development</span>
+
                     <h3>Company Website</h3>
-                    <p>Modern website for business showcase with responsive design.</p>
-                    <a href="#" class="btn">View Demo</a>
-                </div>
-        
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <img src="Ne.png" alt="Project 3">
+
+                    <p>
+                        A responsive business website designed to present company
+                        services, information, and professional offerings.
+                    </p>
+
+                    <div class="tech-stack">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                    <a href="portfolio.html" class="btn">Explore Project</a>
+                </article>
+
+                <!-- WEB DEVELOPMENT PROJECT -->
+                <article class="project-card">
+                    <img
+                        src="Ne.png"
+                        alt="Payment and transaction portal project"
+                        loading="lazy">
+
+                    <span class="project-category">Web Development</span>
+
                     <h3>Payment & Transaction Portal</h3>
-                    <p>Secure portal with online payment and transaction management.</p>
-                    <a href="#" class="btn">View Demo</a>
-                </div>
-        
+
+                    <p>
+                        A portal concept for managing transactions, payment records,
+                        and user activities in a web application.
+                    </p>
+
+                    <div class="tech-stack">
+                        <span>PHP</span>
+                        <span>MySQL</span>
+                        <span>Web Integration</span>
+                    </div>
+
+                    <a href="portfolio.html" class="btn">Explore Project</a>
+                </article>
+
+                <!-- MACHINE LEARNING PROJECT -->
+                <article class="project-card">
+                    <div class="project-visual" role="img"
+                         aria-label="Crop disease detection project illustration">
+                        <span aria-hidden="true">🌿</span>
+                        <strong>Crop Disease Detection</strong>
+                    </div>
+
+                    <span class="project-category">Machine Learning</span>
+
+                    <h3>Crop Disease Detection System</h3>
+
+                    <p>
+                        An image classification system that identifies tomato and
+                        bell pepper leaf diseases using a trained MobileNetV2 model.
+                    </p>
+
+                    <div class="tech-stack">
+                        <span>Python</span>
+                        <span>TensorFlow</span>
+                        <span>MobileNetV2</span>
+                        <span>ONNX</span>
+                    </div>
+
+                    <a href="portfolio.html" class="btn">Explore Project</a>
+                </article>
+
+                <!-- MACHINE LEARNING PROJECT -->
+                <article class="project-card">
+                    <div class="project-visual" role="img"
+                         aria-label="Online retail product recommendation project illustration">
+                        <span aria-hidden="true">🛒</span>
+                        <strong>Retail Product Insights</strong>
+                    </div>
+
+                    <span class="project-category">Machine Learning</span>
+
+                    <h3>Online Retail Purchase Behavior</h3>
+
+                    <p>
+                        An association rule mining project that discovers product
+                        purchasing patterns and generates product recommendations.
+                    </p>
+
+                    <div class="tech-stack">
+                        <span>Python</span>
+                        <span>pandas</span>
+                        <span>Association Rules</span>
+                        <span>Flask</span>
+                    </div>
+
+                    <a href="portfolio.html" class="btn">Explore Project</a>
+                </article>
+
+                <!-- DATA ANALYSIS -->
+                <article class="project-card">
+                    <div class="project-visual" role="img"
+                         aria-label="Data analysis and visualization illustration">
+                        <span aria-hidden="true">📊</span>
+                        <strong>Data Analysis & Visualization</strong>
+                    </div>
+
+                    <span class="project-category">Data Analysis</span>
+
+                    <h3>Data Analysis & Reporting</h3>
+
+                    <p>
+                        My data analysis focus includes preparing datasets,
+                        exploring patterns, creating visualizations, and presenting
+                        findings through clear reports and dashboards.
+                    </p>
+
+                    <div class="tech-stack">
+                        <span>Excel</span>
+                        <span>Power BI</span>
+                        <span>Data Visualization</span>
+                    </div>
+
+                    <a href="about.html" class="btn">About My Skills</a>
+                </article>
+
             </div>
         </section>
-    
-        <footer class="footer-section">
-            <div class="footer-container">
-        
-                <!-- About / Brand -->
-                <div class="footer-brand">
-                    <h2 class="logo">
-                        <span class="logo-box">MS</span>
-                        <span class="logo-text">Web Developer</span>
-                    </h2>
-                    <p>Building modern, secure, and responsive websites and systems for schools and businesses.</p>
-                </div>
-        
-                <!-- Quick Links -->
-                <div class="footer-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-        
-                <!-- Contact Info -->
-                <!-- Contact Info -->
+
+        <!-- CONTACT CALL TO ACTION -->
+        <section class="contact-cta">
+            <div class="contact-box">
+                <span class="section-label">Let's Work Together</span>
+
+                <h2>Have a Project in Mind?</h2>
+
+                <p>
+                    Need a website, a data analysis solution, or a machine learning
+                    application? Let's discuss how I can help.
+                </p>
+
+                <a href="contact.html" class="btn">Contact Me</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+        <div class="footer-container">
+
+            <div class="footer-brand">
+                <h2 class="logo">
+                    <span class="logo-box">MS</span>
+                    <span class="logo-text">Web Developer</span>
+                </h2>
+
+                <p>
+                    Building modern web applications, analyzing data,
+                    and developing machine learning solutions for practical problems.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
             <div class="footer-contact">
-                <h3>Contact</h3>
-                <p>Email: <a href="mailto:masoyinshehu75@gmail.com">masoyinshehu75@gmail.com</a></p>
-                <p>WhatsApp: <a href="https://wa.me/2349133245515" target="_blank">+234 913 324 5515</a></p>
-                <p>Location:Opposite Kofar Hausa Ahuwa Bread,<br>Keffi, Nasarawa State Nigeria</p>
+                <h3>Contact Me</h3>
+
+                <p>
+                    Email:
+                    <a href="mailto:masoyinshehu75@gmail.com">
+                        masoyinshehu75@gmail.com
+                    </a>
+                </p>
+
+                <p>
+                    WhatsApp:
+                    <a href="https://wa.me/2349133245515"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        +234 913 324 5515
+                    </a>
+                </p>
+
+                <p>Location: Keffi, Nasarawa State, Nigeria</p>
             </div>
-        
-            </div>
-        
-            <!-- Copyright -->
-            <div class="footer-bottom">
-                <p>&copy; 2026 MS-Web Developer. All Rights Reserved.</p>
-            </div>
-        </footer>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                &copy; <span id="current-year">2026</span>
+                MS-Web Developer. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation: open and close
+        const menuToggle = document.getElementById("menu-toggle");
+        const navLinks = document.getElementById("nav-links");
+
+        menuToggle.addEventListener("click", function () {
+            const isOpen = navLinks.classList.toggle("active");
+
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
+
+            menuToggle.textContent = isOpen ? "✕" : "☰";
+        });
+
+        // Close the mobile menu after selecting a navigation link
+        navLinks.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("active");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Open navigation menu");
+                menuToggle.textContent = "☰";
+            });
+        });
+
+        // Automatically update the copyright year
+        document.getElementById("current-year").textContent =
+            new Date().getFullYear();
+    </script>
 
 </body>
 </html>
